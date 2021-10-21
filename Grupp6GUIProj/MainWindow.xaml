@@ -21,10 +21,10 @@
                     <MenuItem Header="_Exit"  Click="Exit_Click"/>
                 </MenuItem>
                 <MenuItem Header="Compression">
-                    <MenuItem Command="Fast">
+                    <MenuItem Header="Fast">
                         
                     </MenuItem>
-                    <MenuItem Command="Better">
+                    <MenuItem Header="Better">
 
                     </MenuItem>
                 </MenuItem>
