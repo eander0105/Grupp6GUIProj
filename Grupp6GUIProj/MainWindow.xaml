@@ -20,6 +20,14 @@
                     <Separator />
                     <MenuItem Header="_Exit"  Click="Exit_Click"/>
                 </MenuItem>
+                <MenuItem Header="Compression">
+                    <MenuItem Command="Fast">
+                        
+                    </MenuItem>
+                    <MenuItem Command="Better">
+
+                    </MenuItem>
+                </MenuItem>
             </MenuItem>
         </Menu>
         <DockPanel>
