@@ -6,7 +6,42 @@
         xmlns:local="clr-namespace:Grupp6GUIProj"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
 
+    <Grid>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Command="Open" />
+                <Separator />
+                <MenuItem Header="_Exit"  Click="Exit_Click"/>
+            </MenuItem>
+            <MenuItem Header="Options">
+                <MenuItem Header="_File">
+                    <MenuItem Command="Open" />
+                    <Separator />
+                    <MenuItem Header="_Exit"  Click="Exit_Click"/>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+        <DockPanel>
+            <TabControl Margin="0,25,0,0">
+                <TabItem Header="Basic">
+                    <StackPanel 
+                        AllowDrop="True"
+                        Drop="StackPanel_Drop"
+                        Margin="20" 
+                        Background="LightGray">
+                        <Label HorizontalAlignment="Center" Margin="50" FontSize="24">Drop file here..</Label>
+                    </StackPanel>
+                    
+                    
+                </TabItem>
+                <TabItem Header="Advanced">
+
+                    
+                    
+                    
+                </TabItem>
+            </TabControl>
+        </DockPanel>
     </Grid>
 </Window>
