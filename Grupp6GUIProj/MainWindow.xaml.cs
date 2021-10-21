@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -13,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace Grupp6GUIProj {
     /// <summary>
@@ -43,6 +45,19 @@ namespace Grupp6GUIProj {
                 {
                     Debug.WriteLine(item);
                 }    
+            }
+        }
+
+        private void btnOpenFiles_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Multiselect = true;
+            openFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            if (openFileDialog.ShowDialog() == true)
+            {
+                foreach (string filename in openFileDialog.FileNames)
+                    lbFiles.Items.Add(System.IO.Path.GetFileName(filename));
             }
         }
     }

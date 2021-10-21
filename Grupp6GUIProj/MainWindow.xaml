@@ -30,16 +30,17 @@
                         Drop="StackPanel_Drop"
                         Margin="20" 
                         Background="LightGray">
-                        <Label HorizontalAlignment="Center" Margin="50" FontSize="24">Drop file here..</Label>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Label HorizontalAlignment="Center" Margin="50" FontSize="24">Drop file here..</Label>
+                            <Button Name="btnOpenFile" Click="btnOpenFiles_Click" VerticalAlignment="Center" Height="34" Width="100" FontSize="18">Browse</Button>
+                            <ListBox Width="0" Name="lbFiles" />
+                        </StackPanel>
                     </StackPanel>
-                    
-                    
                 </TabItem>
                 <TabItem Header="Advanced">
-
-                    
-                    
-                    
+                        <StackPanel>
+                            
+                        </StackPanel>                   
                 </TabItem>
             </TabControl>
         </DockPanel>
