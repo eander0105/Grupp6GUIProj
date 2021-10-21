@@ -43,8 +43,11 @@ namespace Grupp6GUIProj {
                 string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
                 foreach (var item in files)
                 {
+                    lbFiles.Items.Add(System.IO.Path.GetFileName(item));
                     Debug.WriteLine(item);
-                }    
+                }
+
+                
             }
         }
 
@@ -59,6 +62,8 @@ namespace Grupp6GUIProj {
                 foreach (string filename in openFileDialog.FileNames)
                     lbFiles.Items.Add(System.IO.Path.GetFileName(filename));
             }
+            lbFilesContainer.Visibility = Visibility.Visible;
+            DropFiles.Visibility = Visibility.Hidden;
         }
     }
 }
