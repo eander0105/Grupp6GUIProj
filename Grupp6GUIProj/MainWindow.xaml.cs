@@ -89,31 +89,6 @@ namespace Grupp6GUIProj {
                 {
                     Debug.WriteLine(item);
                 }
-                //string YourApplicationPath = "C:\\Users\\eande\\source\\repos\\Grupp6GUIProj\\Grupp6GUIProj\\molk";
-                //ProcessStartInfo processInfo = new ProcessStartInfo();
-                //processInfo.UseShellExecute = true;
-                //processInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                //processInfo.FileName = "cmd.exe";
-                //processInfo.WorkingDirectory = System.IO.Path.GetDirectoryName(YourApplicationPath);
-                //processInfo.Arguments = "/c molk C:\\Users\\eande\\Desktop\\Ny mapp\\test.molk " + files[0]/* + System.IO.Path.GetFileName(YourApplicationPath)*/;
-                //Process.Start(processInfo);
-
-
-                //var command = "molk";
-                //System.Diagnostics.ProcessStartInfo procStartInfo = new System.Diagnostics.ProcessStartInfo("cmd", "/c " + command);
-                //procStartInfo.RedirectStandardOutput = true;
-                //procStartInfo.UseShellExecute = false;
-                //procStartInfo.WorkingDirectory = "C:\\Users\\eande\\source\\repos\\Grupp6GUIProj\\Grupp6GUIProj";
-                //procStartInfo.CreateNoWindow = true; //whether you want to display the command window
-                //System.Diagnostics.Process proc = new System.Diagnostics.Process();
-                //proc.StartInfo = procStartInfo;
-                //proc.Start();
-                //string result = proc.StandardOutput.ReadToEnd();
-                //Debug.WriteLine(result.ToString());
-
-                //string strCmdText;
-                //strCmdText = "";
-                //System.Diagnostics.Process.Start("CMD.exe");
 
                 Process cmd = new Process();
 
