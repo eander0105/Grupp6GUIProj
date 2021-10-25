@@ -4,7 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon>molkico-1.ico</ApplicationIcon>
+    <ApplicationIcon>LOL-logga.ico</ApplicationIcon>
   </PropertyGroup>
 
 </Project>
