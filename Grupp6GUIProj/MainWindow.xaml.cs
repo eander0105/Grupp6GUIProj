@@ -103,10 +103,12 @@ namespace Grupp6GUIProj {
                     }
                     else
                     {
-                        cmd.StandardInput.WriteLine("cd " + System.IO.Path.GetDirectoryName(files[0]));
+                        Debug.WriteLine("cd " + System.IO.Path.GetDirectoryName(files[0]));
+                        cmd.StandardInput.Flush();
                         foreach (var item in files)
                         {
-                            cmd.StandardInput.WriteLine(@"molk -r """ + /*System.IO.Path.GetDirectoryName(files[0]) + "\\" + */System.IO.Path.GetFileNameWithoutExtension(files[0]) + @".molk"" """ + System.IO.Path.GetFileName(item) + @"""");
+                            //Debug.WriteLine(@"molk -j """ + System.IO.Path.GetDirectoryName(files[0]) + "\\" + System.IO.Path.GetFileNameWithoutExtension(files[0]) + @".molk"" """ + item + @"""");
+                            cmd.StandardInput.WriteLine(@"molk -r """ + System.IO.Path.GetDirectoryName(files[0]) + "\\" + System.IO.Path.GetFileNameWithoutExtension(files[0]) + @".molk"" """ + item + @"""");
                         }
                     }
                     
