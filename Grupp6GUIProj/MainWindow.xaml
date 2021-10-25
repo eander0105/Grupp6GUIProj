@@ -5,10 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Grupp6GUIProj"
         mc:Ignorable="d"
-        Title="Molk" Height="450" Width="800">
+        Title="Molk" Height="450" Width="800" FontFamily="sans-serif">
 
     <Grid>
-        <Menu DockPanel.Dock="Top">
+        <Menu DockPanel.Dock="Top"
+              FontFamily="sans-serif"
+              FontSize="14"
+              Foreground="Black"
+              Background="#FFB2B0BB">
             <MenuItem Header="_File">
                 <MenuItem Command="Open" />
                 <Separator />
@@ -22,29 +26,48 @@
                 </MenuItem>
                 <MenuItem Header="Compression">
                     <MenuItem Header="Fast">
-                        
                     </MenuItem>
                     <MenuItem Header="Better">
-
                     </MenuItem>
                 </MenuItem>
             </MenuItem>
         </Menu>
+        <StackPanel Margin="480,7,134,360">
+            <Image Source="/Assets/Images/logo-lila.png" Height="57" Width="181"/>
+        </StackPanel>
         <DockPanel>
-            <TabControl Margin="0,25,0,0">
-                <TabItem Header="Basic">
+            <TabControl Margin="0,45,0,0" Background="#FF2E2732">
+                <TabItem Header="Basic"
+                         FontFamily="Arial"
+                         FontSize="14"
+                         Foreground="Black"
+                         Background="#FF987FA6">
                     <StackPanel 
                         AllowDrop="True"
                         Drop="StackPanel_Drop"
-                        Margin="20" 
-                        Background="LightGray">
+                        Margin="20" Background="#FFCCB5D8">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Label HorizontalAlignment="Center" Margin="50" FontSize="24">Drop file here..</Label>
-                            <Button Name="btnOpenFile" Click="btnOpenFiles_Click" VerticalAlignment="Center" Height="34" Width="100" FontSize="18">Browse</Button>
+                            <Label HorizontalAlignment="Center"
+                                   Margin="50"
+                                   FontFamily="sans-serif"
+                                   Foreground="Black"
+                                   FontSize="24">Drop file here..</Label>
+                            <Button Name="btnOpenFile"
+                                    Click="btnOpenFiles_Click"
+                                    VerticalAlignment="Center"
+                                    Height="34" Width="100"
+                                    FontFamily="sans-serif"
+                                    Background="#b2b0bb"
+                                    Foreground="Black"
+                                    FontSize="18">Browse</Button>
                         </StackPanel>
                     </StackPanel>
                 </TabItem>
-                <TabItem Header="Advanced">
+                <TabItem Header="Advanced"
+                         Foreground="Black"
+                         FontFamily="sans-serif"
+                         FontSize="14"
+                         Background="#FF987FA6">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="13*" />
@@ -61,33 +84,104 @@
                                 <RowDefinition Height="3*"/>
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="22*"/>
+                                    <ColumnDefinition Width="375*"/>
+                                </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="1*"/>
                                     <RowDefinition Height="1*"/>
                                     <RowDefinition Height="1*"/>
                                 </Grid.RowDefinitions>
-                                <Button Grid.Row="0" Margin="10" FontSize="18">Molk File to Location</Button>
-                                <Button Grid.Row="1" Margin="10" FontSize="18">UnMolk file to location</Button>
-                                <Button Grid.Row="2" Margin="10" FontSize="18">Clear</Button>
+                                <Button Grid.Row="0"
+                                        Margin="10,10,10,10"
+                                        FontSize="18"
+                                        Background="#FF987FA6"
+                                        Foreground="Black"
+                                        Grid.ColumnSpan="2">Molk File to Location
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius"
+                                                    Value="2"/>
+                                        </Style>
+                                    </Button.Resources>
+                                </Button>
+                                <Button Grid.Row="1"
+                                        Margin="10,10,10,10"
+                                        FontSize="18"
+                                        Background="#FF987FA6"
+                                        Foreground="Black" Grid.ColumnSpan="2">UnMolk file to location
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="2"/>
+                                        </Style>
+                                    </Button.Resources>
+                                </Button>
+                                <Button Grid.Row="2"
+                                        Margin="10,10,10,10"
+                                        FontSize="18"
+                                        Foreground="Black"
+                                        Background="#FF987FA6" Grid.ColumnSpan="2">Clear
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="2"/>
+                                        </Style>
+                                    </Button.Resources>
+                                </Button>
                             </Grid>
-                            <Border Grid.Row="1" BorderBrush="Black" BorderThickness="1" Margin="10">
+                            <Border Grid.Row="1"
+                                    BorderBrush="Black"
+                                    BorderThickness="1"
+                                    Margin="10">
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="1*"/>
                                         <RowDefinition Height="6*"/>
                                     </Grid.RowDefinitions>
-                                    <TextBox Grid.Row="0" FontSize="12" IsEnabled="False"></TextBox>
+                                    <Border CornerRadius="5"
+                                            BorderThickness="1"
+                                            BorderBrush="#FF2E2732">
+                                        <TextBox Grid.Row="0"
+                                                 FontSize="12"
+                                                 IsEnabled="False"
+                                                 Background="WhiteSmoke">
+                                        </TextBox>
+                                    </Border>
                                     <ScrollViewer Grid.Row="1">
-                                        <TextBox AcceptsReturn="True" TextWrapping="Wrap" SpellCheck.IsEnabled="True" Language="en-US" IsEnabled="False"/>
+                                        <Border CornerRadius="1"
+                                                BorderThickness="1"
+                                                BorderBrush="White">
+                                            <TextBox AcceptsReturn="True"
+                                                 TextWrapping="Wrap"
+                                                 BorderThickness="0"
+                                                 SpellCheck.IsEnabled="True"
+                                                 Language="en-US" IsEnabled="False">
+                                            </TextBox>
+                                        </Border>
                                     </ScrollViewer>
                                 </Grid>
                             </Border>
                         </Grid>
-                        <StackPanel AllowDrop="True" Drop="StackPanel_Drop" Background="LightGray" Grid.Column="3" Margin="10,10,10,10" >
-                            <Grid>
-                                <StackPanel Name="DropFiles" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <Label HorizontalAlignment="Center" FontSize="24" VerticalAlignment="Center">Drop file here..</Label>
-                                    <Button Name="btnOpenFileAdvanced" Click="btnOpenFiles_Click" VerticalAlignment="Center" Height="34" Width="100" FontSize="18">Browse</Button>
+                        <StackPanel AllowDrop="True"
+                                    Drop="StackPanel_Drop"
+                                    Background="LightGray"
+                                    Grid.Column="3"
+                                    Margin="10,10,10,10" >
+                            <Grid Height="338" Background="#FFCCB5D8">
+                                <StackPanel Name="DropFiles"
+                                            Orientation="Horizontal"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center">
+                                    <Label HorizontalAlignment="Center"
+                                           FontSize="24"
+                                           Foreground="Black"
+                                           VerticalAlignment="Center">Drop file here..</Label>
+                                    <Button Name="btnOpenFileAdvanced"
+                                            Click="btnOpenFiles_Click"
+                                            Foreground="Black"
+                                            VerticalAlignment="Center"
+                                            Height="34" Width="100"
+                                            FontSize="18">Browse</Button>
                                 </StackPanel>
                                 <Viewbox Name="lbFilesContainer" Visibility="Hidden">
                                     <ListBox Name="lbFiles" />
