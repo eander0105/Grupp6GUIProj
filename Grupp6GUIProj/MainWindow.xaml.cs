@@ -85,24 +85,36 @@ namespace Grupp6GUIProj {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-                foreach (var item in files)
+                if (files.Length > 0)
                 {
-                    Debug.WriteLine(item);
+                    Process cmd = new Process();
+
+                    cmd.StartInfo.FileName = "cmd.exe";
+                    cmd.StartInfo.RedirectStandardInput = true;
+                    cmd.StartInfo.RedirectStandardOutput = true;
+                    cmd.StartInfo.CreateNoWindow = true;
+                    cmd.StartInfo.UseShellExecute = false;
+                    cmd.Start();
+
+                    if (files.Length == 1 && System.IO.Path.GetExtension(files[0]) == ".molk")
+                    {
+                        Debug.WriteLine(@"unmolk """ + files[0] + @""" -d """ + System.IO.Path.GetDirectoryName(files[0]) + @"""");
+                        cmd.StandardInput.WriteLine(@"unmolk """ + files[0] + @""" -d """ + System.IO.Path.GetDirectoryName(files[0]) + @"""");
+                    }
+                    else
+                    {
+                        cmd.StandardInput.WriteLine("cd " + System.IO.Path.GetDirectoryName(files[0]));
+                        foreach (var item in files)
+                        {
+                            cmd.StandardInput.WriteLine(@"molk -r """ + /*System.IO.Path.GetDirectoryName(files[0]) + "\\" + */System.IO.Path.GetFileNameWithoutExtension(files[0]) + @".molk"" """ + System.IO.Path.GetFileName(item) + @"""");
+                        }
+                    }
+                    
+                    cmd.StandardInput.Flush();
+                    cmd.StandardInput.Close();
+                    cmd.WaitForExit();
                 }
 
-                Process cmd = new Process();
-
-                cmd.StartInfo.FileName = "cmd.exe";
-                cmd.StartInfo.RedirectStandardInput = true;
-                cmd.StartInfo.RedirectStandardOutput = true;
-                cmd.StartInfo.CreateNoWindow = true;
-                cmd.StartInfo.UseShellExecute = false;
-                cmd.Start();
-
-                cmd.StandardInput.WriteLine(@"molk C:\Users\eande\Desktop\Ny-mapp\test.molk " + files[0]);
-                cmd.StandardInput.Flush();
-                cmd.StandardInput.Close();
-                cmd.WaitForExit();
             }
         }
     }
