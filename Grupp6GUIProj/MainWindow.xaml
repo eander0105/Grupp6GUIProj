@@ -44,7 +44,7 @@
                          Background="#FF987FA6">
                     <StackPanel 
                         AllowDrop="True"
-                        Drop="StackPanel_Drop"
+                        Drop="StackPanel_Drop_Basic"
                         Margin="20" Background="#FFCCB5D8">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <Label HorizontalAlignment="Center"
@@ -121,7 +121,8 @@
                                         Margin="10,10,10,10"
                                         FontSize="18"
                                         Foreground="Black"
-                                        Background="#FF987FA6" Grid.ColumnSpan="2">Clear
+                                        Background="#FF987FA6" Grid.ColumnSpan="2"
+                                        Click="Clear_Click">Clear
                                     <Button.Resources>
                                         <Style TargetType="Border">
                                             <Setter Property="CornerRadius" Value="2"/>
