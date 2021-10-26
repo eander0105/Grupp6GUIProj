@@ -49,11 +49,13 @@ namespace Grupp6GUIProj {
                 e.Cancel = true;
             }
         }
-        
+
         private void ExitApplication()
         {
             Application.Current.Shutdown();
         }
+
+
 
         private void StackPanel_Drop(object sender, DragEventArgs e)
         {
@@ -74,7 +76,8 @@ namespace Grupp6GUIProj {
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Multiselect = true;
-            openFileDialog.Filter = "All files (*.*)|*.*";
+            //openFileDialog.Filter = "All files (*.*)|*.*";
+            openFileDialog.Filter = "All files (*.*)|*.*|Molk Archives (*.molk)|*.molk";
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             if (openFileDialog.ShowDialog() == true)
             {
@@ -85,6 +88,53 @@ namespace Grupp6GUIProj {
             }
             lbFilesContainer.Visibility = Visibility.Visible;
             DropFiles.Visibility = Visibility.Hidden;
+        }
+
+
+        private void btnOpenFiles_Click_Basic(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Multiselect = true;
+            openFileDialog.Filter = "All files (*.*)|*.*|Molk Archives (*.molk)|*.molk";
+            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string[] files = openFileDialog.FileNames;
+                if (files.Length > 0)
+                {
+                    Process cmd = new Process();
+
+                    cmd.StartInfo.FileName = "cmd.exe";
+                    cmd.StartInfo.RedirectStandardInput = true;
+                    cmd.StartInfo.RedirectStandardOutput = true;
+                    cmd.StartInfo.CreateNoWindow = true;
+                    cmd.StartInfo.UseShellExecute = false;
+                    cmd.Start();
+                    cmd.StandardInput.WriteLine("cd..\\..\\..\\");
+
+                    if (files.Length == 1 && System.IO.Path.GetExtension(files[0]) == ".molk")
+                    {
+                        Debug.WriteLine(@"unmolk """ + files[0] + @""" -d """ + System.IO.Path.GetDirectoryName(files[0]) + @"""");
+                        cmd.StandardInput.WriteLine(@"unmolk """ + files[0] + @""" -d """ + System.IO.Path.GetDirectoryName(files[0]) + @"""");
+                    }
+                    else
+                    {
+                        Debug.WriteLine("cd " + System.IO.Path.GetDirectoryName(files[0]));
+                        cmd.StandardInput.Flush();
+                        foreach (var item in files)
+                        {
+                            cmd.StandardInput.WriteLine(@"molk -r -j """ + System.IO.Path.GetDirectoryName(files[0]) + "\\" + System.IO.Path.GetFileNameWithoutExtension(files[0]) + @".molk"" """ + item + @"""");
+                        }
+                    }
+
+                    cmd.StandardInput.Flush();
+                    cmd.StandardInput.Close();
+                    cmd.WaitForExit();
+                    MessageBox.Show("File prossesing done", "Done", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.None, MessageBoxOptions.DefaultDesktopOnly);
+                }
+
+
+            }
         }
 
         private void Clear_Click(object sender, RoutedEventArgs e)
@@ -127,16 +177,14 @@ namespace Grupp6GUIProj {
                         cmd.StandardInput.Flush();
                         foreach (var item in files)
                         {
-                            //Debug.WriteLine(@"molk -j """ + System.IO.Path.GetDirectoryName(files[0]) + "\\" + System.IO.Path.GetFileNameWithoutExtension(files[0]) + @".molk"" """ + item + @"""");
                             cmd.StandardInput.WriteLine(@"molk -r -j """ + System.IO.Path.GetDirectoryName(files[0]) + "\\" + System.IO.Path.GetFileNameWithoutExtension(files[0]) + @".molk"" """ + item + @"""");
                         }
                     }
-                    
+
                     cmd.StandardInput.Flush();
                     cmd.StandardInput.Close();
                     cmd.WaitForExit();
-                    MessageBox.Show("File prossesing done", "Done", MessageBoxButton.OK,MessageBoxImage.Information, MessageBoxResult.None,MessageBoxOptions.DefaultDesktopOnly);
-                        ;
+                    MessageBox.Show("File prossesing done", "Done", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.None, MessageBoxOptions.DefaultDesktopOnly);
                 }
 
             }

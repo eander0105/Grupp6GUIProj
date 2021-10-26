@@ -58,7 +58,7 @@
                                    Foreground="Black"
                                    FontSize="24">Drop file here..</Label>
                             <Button Name="btnOpenFile"
-                                    Click="btnOpenFiles_Click"
+                                    Click="btnOpenFiles_Click_Basic"
                                     VerticalAlignment="Center"
                                     Height="34" Width="100"
                                     FontFamily="sans-serif"
