@@ -35,7 +35,7 @@ namespace Grupp6GUIProj {
             }
             else
             {
-                Application.Current.Shutdown();
+                ExitApplication();
             }
         }
 
@@ -49,6 +49,7 @@ namespace Grupp6GUIProj {
                 e.Cancel = true;
             }
         }
+        
         private void ExitApplication()
         {
             Application.Current.Shutdown();
