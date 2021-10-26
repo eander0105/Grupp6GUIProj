@@ -35,9 +35,25 @@ namespace Grupp6GUIProj {
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
-            ExitApplication();
+            if (MessageBox.Show("Do you wish to close applicaton?", "Closing", MessageBoxButton.YesNo) == MessageBoxResult.No)
+            {
+                return;
+            }
+            else
+            {
+                Application.Current.Shutdown();
+            }
         }
-
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            var res = MessageBox.Show("Do you wish to close application?", "Closing", MessageBoxButton.YesNo);
+            if (res == MessageBoxResult.Yes)
+                base.OnClosing(e);
+            else
+            {
+                e.Cancel = true;
+            }
+        }
         private void ExitApplication()
         {
             Application.Current.Shutdown();
