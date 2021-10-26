@@ -168,7 +168,7 @@
                                     Background="LightGray"
                                     Grid.Column="3"
                                     Margin="10,10,10,10" >
-                            <Grid Height="338" Background="#FFCCB5D8">
+                            <Grid Background="#FFCCB5D8">
                                 <StackPanel Name="DropFiles"
                                             Orientation="Horizontal"
                                             HorizontalAlignment="Center"
