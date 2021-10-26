@@ -116,7 +116,7 @@ namespace Grupp6GUIProj {
                     cmd.StandardInput.Flush();
                     cmd.StandardInput.Close();
                     cmd.WaitForExit();
-                    MessageBox.Show("File prossesing done", "Done", MessageBoxButton.OK,MessageBoxImage.Information);
+                    MessageBox.Show("File prossesing done", "Done", MessageBoxButton.OK,MessageBoxImage.Information, MessageBoxResult.None,MessageBoxOptions.DefaultDesktopOnly);
                         ;
                 }
 
