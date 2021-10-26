@@ -95,6 +95,7 @@ namespace Grupp6GUIProj {
                     cmd.StartInfo.CreateNoWindow = true;
                     cmd.StartInfo.UseShellExecute = false;
                     cmd.Start();
+                    cmd.StandardInput.WriteLine("cd..\\..\\..\\");
 
                     if (files.Length == 1 && System.IO.Path.GetExtension(files[0]) == ".molk")
                     {
