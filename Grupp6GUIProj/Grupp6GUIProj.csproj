@@ -8,7 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Images\logo-lila.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="WindowsAPICodePack-Shell" Version="1.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Images\logo-lila.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

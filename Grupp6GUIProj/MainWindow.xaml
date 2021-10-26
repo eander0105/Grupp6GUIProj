@@ -8,33 +8,38 @@
         Title="Molk" Height="450" Width="800" FontFamily="sans-serif">
 
     <Grid>
-        <Menu DockPanel.Dock="Top"
+        <Grid>
+
+            <Menu DockPanel.Dock="Top"
               FontFamily="sans-serif"
               FontSize="14"
               Foreground="Black"
               Background="#FFB2B0BB">
-            <MenuItem Header="_File">
-                <MenuItem Command="Open" />
-                <Separator />
-                <MenuItem Header="_Exit"  Click="Exit_Click"/>
-            </MenuItem>
-            <MenuItem Header="Options">
                 <MenuItem Header="_File">
                     <MenuItem Command="Open" />
                     <Separator />
                     <MenuItem Header="_Exit"  Click="Exit_Click"/>
                 </MenuItem>
-                <MenuItem Header="Compression">
-                    <MenuItem Header="Fast">
+                <MenuItem Header="Options">
+                    <MenuItem Header="_File">
+                        <MenuItem Command="Open" />
+                        <Separator />
+                        <MenuItem Header="_Exit"  Click="Exit_Click"/>
                     </MenuItem>
-                    <MenuItem Header="Better">
+                    <MenuItem Header="Compression">
+                        <MenuItem Header="Fast">
+                        </MenuItem>
+                        <MenuItem Header="Better">
+                        </MenuItem>
                     </MenuItem>
                 </MenuItem>
-            </MenuItem>
-        </Menu>
-        <StackPanel Margin="480,7,134,360">
-            <Image Source="/Assets/Images/logo-lila.png" Height="57" Width="181"/>
-        </StackPanel>
+            </Menu>
+            <Image VerticalAlignment="Top" Height="50" Width="113">
+                <Image.Source>
+                    <BitmapImage UriSource="/Assets/Images/logo-lila.png"/>
+                </Image.Source>
+            </Image>
+        </Grid>
         <DockPanel>
             <TabControl Margin="0,45,0,0" Background="#FF2E2732">
                 <TabItem Header="Basic"
