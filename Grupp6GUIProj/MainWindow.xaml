@@ -47,17 +47,17 @@
                          FontSize="14"
                          Foreground="Black"
                          Background="#FF987FA6">
-                    <StackPanel 
+                    <Grid 
                         AllowDrop="True"
                         Drop="StackPanel_Drop_Basic"
                         Margin="20" Background="#FFCCB5D8">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Label HorizontalAlignment="Center"
-                                   Margin="50"
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <Label HorizontalAlignment="Center"
+                                   Margin="20"
                                    FontFamily="sans-serif"
                                    Foreground="Black"
                                    FontSize="24">Drop file here..</Label>
-                            <Button Name="btnOpenFile"
+                                <Button Name="btnOpenFile"
                                     Click="btnOpenFiles_Click_Basic"
                                     VerticalAlignment="Center"
                                     Height="34" Width="100"
@@ -65,8 +65,8 @@
                                     Background="#b2b0bb"
                                     Foreground="Black"
                                     FontSize="18">Browse</Button>
-                        </StackPanel>
-                    </StackPanel>
+                            </StackPanel>
+                    </Grid>
                 </TabItem>
                 <TabItem Header="Advanced"
                          Foreground="Black"
