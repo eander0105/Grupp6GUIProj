@@ -108,7 +108,7 @@ namespace Grupp6GUIProj {
                         foreach (var item in files)
                         {
                             //Debug.WriteLine(@"molk -j """ + System.IO.Path.GetDirectoryName(files[0]) + "\\" + System.IO.Path.GetFileNameWithoutExtension(files[0]) + @".molk"" """ + item + @"""");
-                            cmd.StandardInput.WriteLine(@"molk -r """ + System.IO.Path.GetDirectoryName(files[0]) + "\\" + System.IO.Path.GetFileNameWithoutExtension(files[0]) + @".molk"" """ + item + @"""");
+                            cmd.StandardInput.WriteLine(@"molk -r -j """ + System.IO.Path.GetDirectoryName(files[0]) + "\\" + System.IO.Path.GetFileNameWithoutExtension(files[0]) + @".molk"" """ + item + @"""");
                         }
                     }
                     

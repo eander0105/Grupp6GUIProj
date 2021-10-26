@@ -7,4 +7,8 @@
     <ApplicationIcon>LOL-logga.ico</ApplicationIcon>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="WindowsAPICodePack-Shell" Version="1.1.1" />
+  </ItemGroup>
+
 </Project>
