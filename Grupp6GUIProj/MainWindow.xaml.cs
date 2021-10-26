@@ -23,7 +23,14 @@ namespace Grupp6GUIProj {
     public partial class MainWindow : Window {
         public MainWindow()
         {
-            InitializeComponent();
+            if (MessageBox.Show("Do you wish to close applicaton?", "Closing", MessageBoxButton.YesNo) == MessageBoxResult.No)
+            {
+                return;
+            }
+            else
+            {
+                Application.Current.Shutdown();
+            }
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
@@ -35,7 +42,16 @@ namespace Grupp6GUIProj {
         {
             Application.Current.Shutdown();
         }
-
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            var res = MessageBox.Show("Do you wish to close application?", "Closing", MessageBoxButton.YesNo);
+            if (res == MessageBoxResult.Yes)
+                base.OnClosing(e);
+            else
+            {
+                e.Cancel = true;
+            }
+        }
         private void StackPanel_Drop(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
