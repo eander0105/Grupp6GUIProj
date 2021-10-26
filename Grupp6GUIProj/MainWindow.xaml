@@ -34,7 +34,7 @@
                     </MenuItem>
                 </MenuItem>
             </Menu>
-            <Image VerticalAlignment="Top" Height="50" Width="113">
+            <Image VerticalAlignment="Top" HorizontalAlignment="Right" Margin="10" Height="50" Width="113">
                 <Image.Source>
                     <BitmapImage UriSource="/Assets/Images/logo-lila.png"/>
                 </Image.Source>
