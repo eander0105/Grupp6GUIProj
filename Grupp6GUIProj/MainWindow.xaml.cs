@@ -278,33 +278,36 @@ namespace Grupp6GUIProj {
             if (folderDialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
                 MessageBox.Show("You selected: " + folderDialog.FileName);
-            }
-            Process cmd = new Process();
 
-            cmd.StartInfo.FileName = "cmd.exe";
-            cmd.StartInfo.RedirectStandardInput = true;
-            cmd.StartInfo.RedirectStandardOutput = true;
-            cmd.StartInfo.CreateNoWindow = true;
-            cmd.StartInfo.UseShellExecute = false;
-            cmd.Start();
-            cmd.StandardInput.WriteLine("cd..\\..\\..\\");
+                Process cmd = new Process();
 
-            cmd.StandardInput.Flush();
-            foreach (var item in pathList)
-            {
-                try
+                cmd.StartInfo.FileName = "cmd.exe";
+                cmd.StartInfo.RedirectStandardInput = true;
+                cmd.StartInfo.RedirectStandardOutput = true;
+                cmd.StartInfo.CreateNoWindow = true;
+                cmd.StartInfo.UseShellExecute = false;
+                cmd.Start();
+                cmd.StandardInput.WriteLine("cd..\\..\\..\\");
+
+                cmd.StandardInput.Flush();
+                foreach (var item in pathList)
                 {
-                    cmd.StandardInput.WriteLine(@"molk -r -j """ + folderDialog.FileName + "\\" + System.IO.Path.GetFileNameWithoutExtension(pathList[0]) + @".molk"" """ + item + @"""");
-                }
-                catch
-                {
-                    MessageBox.Show("could not molk  " + item + "please try again", "Could not molk", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.None, MessageBoxOptions.DefaultDesktopOnly);
+                    try
+                    {
+                        cmd.StandardInput.WriteLine(@"molk -r -j """ + folderDialog.FileName + "\\" + System.IO.Path.GetFileNameWithoutExtension(pathList[0]) + @".molk"" """ + item + @"""");
+                    }
+                    catch
+                    {
+                        MessageBox.Show("could not molk  " + item + "please try again", "Could not molk", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.None, MessageBoxOptions.DefaultDesktopOnly);
 
+                    }
                 }
+                cmd.StandardInput.Flush();
+                cmd.StandardInput.Close();
+                cmd.WaitForExit();
+
+
             }
-            cmd.StandardInput.Flush();
-            cmd.StandardInput.Close();
-            cmd.WaitForExit();
 
         }
 
