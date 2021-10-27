@@ -53,10 +53,10 @@
                         Margin="20" Background="#FFCCB5D8">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                             <Label HorizontalAlignment="Center"
-                                   Margin="20"
+                                   Margin="10"
                                    FontFamily="sans-serif"
                                    Foreground="Black"
-                                   FontSize="24">Drop file here..</Label>
+                                   FontSize="24">Drop file here or</Label>
                             <Button Name="btnOpenFile"
                                     Click="btnOpenFiles_Click_Basic"
                                     VerticalAlignment="Center"
