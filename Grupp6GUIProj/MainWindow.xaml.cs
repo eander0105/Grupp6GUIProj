@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using System.ComponentModel;
+using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace Grupp6GUIProj {
     /// <summary>
@@ -44,7 +45,7 @@ namespace Grupp6GUIProj {
 
         protected override void OnClosing(CancelEventArgs e)
         {
-            var res = MessageBox.Show("Do you wish to close application?", "Closing", MessageBoxButton.YesNo);
+            var res = MessageBox.Show("Do you wish to close application?", "Closing", MessageBoxButton.YesNo,MessageBoxImage.Exclamation);
             if (res == MessageBoxResult.Yes)
                 base.OnClosing(e);
             else
@@ -209,6 +210,78 @@ namespace Grupp6GUIProj {
                 }
 
             }
+        }
+
+        private void UnMolkFileLocation(object sender, RoutedEventArgs e)
+        {
+            CommonOpenFileDialog folderDialog = new CommonOpenFileDialog();
+            folderDialog.InitialDirectory = "C:\\Users";
+            folderDialog.IsFolderPicker = true;
+            if (folderDialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                MessageBox.Show("You selected: " + folderDialog.FileName);
+            }
+            Process cmd = new Process();
+
+            cmd.StartInfo.FileName = "cmd.exe";
+            cmd.StartInfo.RedirectStandardInput = true;
+            cmd.StartInfo.RedirectStandardOutput = true;
+            cmd.StartInfo.CreateNoWindow = true;
+            cmd.StartInfo.UseShellExecute = false;
+            cmd.Start();
+            cmd.StandardInput.WriteLine("cd..\\..\\..\\");
+            try
+            {
+                cmd.StandardInput.WriteLine(@"unmolk """ + pathList[0] + @""" -d """ + folderDialog.FileName + @"""");
+            }
+            catch
+            {
+                MessageBox.Show("could not unmolk the file please try again", "Could not unmolk", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.None, MessageBoxOptions.DefaultDesktopOnly);
+            }
+            cmd.StandardInput.Flush();
+            cmd.StandardInput.Close();
+            cmd.WaitForExit();
+            MessageBox.Show("File prossesing done", "Done", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.None, MessageBoxOptions.DefaultDesktopOnly);
+
+        }
+
+        private void MolkFileLocation(object sender, RoutedEventArgs e)
+        {
+            CommonOpenFileDialog folderDialog = new CommonOpenFileDialog();
+            folderDialog.InitialDirectory = "C:\\Users";
+            folderDialog.IsFolderPicker = true;
+            if (folderDialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                MessageBox.Show("You selected: " + folderDialog.FileName);
+            }
+            Process cmd = new Process();
+
+            cmd.StartInfo.FileName = "cmd.exe";
+            cmd.StartInfo.RedirectStandardInput = true;
+            cmd.StartInfo.RedirectStandardOutput = true;
+            cmd.StartInfo.CreateNoWindow = true;
+            cmd.StartInfo.UseShellExecute = false;
+            cmd.Start();
+            cmd.StandardInput.WriteLine("cd..\\..\\..\\");
+          
+            cmd.StandardInput.Flush();
+            foreach (var item in pathList)
+            {
+                try
+                {
+                    cmd.StandardInput.WriteLine(@"molk -r -j """ + folderDialog.FileName + "\\" + System.IO.Path.GetFileNameWithoutExtension(pathList[0]) + @".molk"" """ + item + @"""");
+                }
+                catch
+                {
+                    MessageBox.Show("could not molk  "+ item + "please try again", "Could not molk", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.None, MessageBoxOptions.DefaultDesktopOnly);
+
+                }
+            }
+            cmd.StandardInput.Flush();
+            cmd.StandardInput.Close();
+            cmd.WaitForExit();
+            MessageBox.Show("File prossesing done", "Done", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.None, MessageBoxOptions.DefaultDesktopOnly);
+
         }
     }
 }

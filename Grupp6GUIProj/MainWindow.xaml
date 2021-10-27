@@ -105,7 +105,8 @@
                                         FontSize="18"
                                         Background="#FF987FA6"
                                         Foreground="Black"
-                                        Grid.ColumnSpan="2">Molk File to Location
+                                        Grid.ColumnSpan="2"
+                                        Click="MolkFileLocation">Molk File to Location
                                     <Button.Resources>
                                         <Style TargetType="Border">
                                             <Setter Property="CornerRadius"
@@ -119,7 +120,8 @@
                                         Margin="10,10,10,10"
                                         FontSize="18"
                                         Background="#FF987FA6"
-                                        Foreground="Black" Grid.ColumnSpan="2">UnMolk file to location
+                                        Foreground="Black" Grid.ColumnSpan="2"
+                                        Click="UnMolkFileLocation">UnMolk file to location
                                     <Button.Resources>
                                         <Style TargetType="Border">
                                             <Setter Property="CornerRadius" Value="2"/>
