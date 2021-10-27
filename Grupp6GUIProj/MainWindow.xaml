@@ -51,13 +51,13 @@
                         AllowDrop="True"
                         Drop="StackPanel_Drop_Basic"
                         Margin="20" Background="#FFCCB5D8">
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                <Label HorizontalAlignment="Center"
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Label HorizontalAlignment="Center"
                                    Margin="20"
                                    FontFamily="sans-serif"
                                    Foreground="Black"
                                    FontSize="24">Drop file here..</Label>
-                                <Button Name="btnOpenFile"
+                            <Button Name="btnOpenFile"
                                     Click="btnOpenFiles_Click_Basic"
                                     VerticalAlignment="Center"
                                     Height="34" Width="100"
@@ -65,7 +65,7 @@
                                     Background="#b2b0bb"
                                     Foreground="Black"
                                     FontSize="18">Browse</Button>
-                            </StackPanel>
+                        </StackPanel>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Advanced"
@@ -176,32 +176,30 @@
                                 </Grid>
                             </Border>
                         </Grid>
-                        <StackPanel AllowDrop="True"
+                        <Grid AllowDrop="True"
                                     Drop="StackPanel_Drop_Advnaced"
-                                    Background="LightGray"
+                                    Background="#FFCCB5D8"
                                     Grid.Column="3"
                                     Margin="10,10,10,10" >
-                            <Grid Background="#FFCCB5D8">
-                                <StackPanel Name="DropFiles"
+                            <StackPanel Name="DropFiles"
                                             Orientation="Horizontal"
                                             HorizontalAlignment="Center"
                                             VerticalAlignment="Center">
-                                    <Label HorizontalAlignment="Center"
+                                <Label HorizontalAlignment="Center"
                                            FontSize="24"
                                            Foreground="Black"
                                            VerticalAlignment="Center">Drop file here..</Label>
-                                    <Button Name="btnOpenFileAdvanced"
+                                <Button Name="btnOpenFileAdvanced"
                                             Click="btnOpenFiles_Click_Advanced"
                                             Foreground="Black"
                                             VerticalAlignment="Center"
                                             Height="34" Width="100"
                                             FontSize="18">Browse</Button>
-                                </StackPanel>
-                                <Viewbox Name="lbFilesContainer" Visibility="Hidden">
-                                    <ListBox Name="lbFiles" />
-                                </Viewbox>
-                            </Grid>
-                        </StackPanel>
+                            </StackPanel>
+                            <Viewbox Name="lbFilesContainer" Visibility="Hidden">
+                                <ListBox Name="lbFiles" />
+                            </Viewbox>
+                        </Grid>
                     </Grid>
                 </TabItem>
             </TabControl>
