@@ -189,5 +189,15 @@ namespace Grupp6GUIProj {
 
             }
         }
+
+        private void UnMolkFileLocation(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MolkFileLocation(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
