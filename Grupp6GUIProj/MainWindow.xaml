@@ -152,20 +152,24 @@
                                         <RowDefinition Height="1*"/>
                                         <RowDefinition Height="6*"/>
                                     </Grid.RowDefinitions>
-                                    <Border CornerRadius="5"
+                                    <Border CornerRadius="2,2,0,0"
                                             BorderThickness="1"
-                                            BorderBrush="#FF2E2732">
-                                        <TextBox Grid.Row="0"
+                                            BorderBrush="white">
+                                        <TextBox 
+                                                 Name="FileName"
+                                                 Grid.Row="0"
                                                  FontSize="12"
                                                  IsEnabled="False"
                                                  Background="WhiteSmoke">
                                         </TextBox>
                                     </Border>
                                     <ScrollViewer Grid.Row="1">
-                                        <Border CornerRadius="1"
+                                        <Border CornerRadius="0,0,0,2"
                                                 BorderThickness="1"
                                                 BorderBrush="White">
-                                            <TextBox AcceptsReturn="True"
+                                            <TextBox 
+                                                 Name="TextFileField"
+                                                 AcceptsReturn="True"
                                                  TextWrapping="Wrap"
                                                  BorderThickness="0"
                                                  SpellCheck.IsEnabled="True"
@@ -199,7 +203,8 @@
                             <Grid Name="lbFilesContainer" Visibility="Hidden">
                                 <ListBox 
                                     Background="#FFCCB5D8"
-                                    Name="lbFiles" />
+                                    Name="lbFiles"
+                                    SelectionChanged="lbFiles_SelectionChanged"/>
                             </Grid>
                         </Grid>
                     </Grid>
