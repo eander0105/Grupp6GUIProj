@@ -153,8 +153,9 @@ namespace Grupp6GUIProj {
 
                     if (files.Length == 1 && System.IO.Path.GetExtension(files[0]) == ".molk")
                     {
-                        Debug.WriteLine(@"unmolk """ + files[0] + @""" -d """ + System.IO.Path.GetDirectoryName(files[0]) + @"""");
                         cmd.StandardInput.WriteLine(@"unmolk """ + files[0] + @""" -d """ + System.IO.Path.GetDirectoryName(files[0]) + @"""");
+                        Process.Start("explorer.exe", System.IO.Path.GetDirectoryName(files[0]));
+
                     }
                     else
                     {
@@ -163,13 +164,13 @@ namespace Grupp6GUIProj {
                         foreach (var item in files)
                         {
                             cmd.StandardInput.WriteLine(@"molk -r -j """ + System.IO.Path.GetDirectoryName(files[0]) + "\\" + System.IO.Path.GetFileNameWithoutExtension(files[0]) + @".molk"" """ + item + @"""");
+                            Process.Start("explorer.exe", System.IO.Path.GetDirectoryName(files[0]));
                         }
                     }
 
                     cmd.StandardInput.Flush();
                     cmd.StandardInput.Close();
                     cmd.WaitForExit();
-                    MessageBox.Show("File prossesing done", "Done", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.None, MessageBoxOptions.DefaultDesktopOnly);
                 }
 
 
