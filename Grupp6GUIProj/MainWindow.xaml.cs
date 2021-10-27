@@ -22,6 +22,9 @@ namespace Grupp6GUIProj {
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window {
+
+        public List<string> pathList = new List<string>();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -55,9 +58,7 @@ namespace Grupp6GUIProj {
             Application.Current.Shutdown();
         }
 
-
-
-        private void StackPanel_Drop(object sender, DragEventArgs e)
+        private void StackPanel_Drop_Advnaced(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
@@ -65,31 +66,48 @@ namespace Grupp6GUIProj {
                 foreach (var item in files)
                 {
                     lbFiles.Items.Add(System.IO.Path.GetFileName(item));
-                    Debug.WriteLine(item);
                 }
                 lbFilesContainer.Visibility = Visibility.Visible;
                 DropFiles.Visibility = Visibility.Hidden;
             }
         }
 
-        private void btnOpenFiles_Click(object sender, RoutedEventArgs e)
+        private void btnOpenFiles_Click_Advanced(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Multiselect = true;
-            //openFileDialog.Filter = "All files (*.*)|*.*";
             openFileDialog.Filter = "All files (*.*)|*.*|Molk Archives (*.molk)|*.molk";
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
             if (openFileDialog.ShowDialog() == true)
             {
                 foreach (string filename in openFileDialog.FileNames)
                 {
-                    lbFiles.Items.Add(filename);
+                    pathList.Add(filename);
+                    lbFiles.Items.Add(System.IO.Path.GetFileName(filename));
                 }
+            }
+            if (pathList.Count() == 1)
+            {
+                if (System.IO.Path.GetExtension(pathList[0]) == ".molk")
+                {
+                    MolkFileBtn.IsEnabled = false;
+                    UnMolkFileBtn.IsEnabled = true;
+                }
+                else
+                {
+                    MolkFileBtn.IsEnabled = true;
+                    UnMolkFileBtn.IsEnabled = false;
+                }
+            }
+            else if (pathList.Count() > 1)
+            {
+                MolkFileBtn.IsEnabled = true;
+                UnMolkFileBtn.IsEnabled = false;
             }
             lbFilesContainer.Visibility = Visibility.Visible;
             DropFiles.Visibility = Visibility.Hidden;
         }
-
 
         private void btnOpenFiles_Click_Basic(object sender, RoutedEventArgs e)
         {
@@ -145,6 +163,9 @@ namespace Grupp6GUIProj {
         private void ClearlbFiles()
         {
             lbFiles.Items.Clear();
+            pathList.Clear();
+            MolkFileBtn.IsEnabled = false;
+            UnMolkFileBtn.IsEnabled = false;
             lbFilesContainer.Visibility = Visibility.Hidden;
             DropFiles.Visibility = Visibility.Visible;
         }
