@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using System.ComponentModel;
+using System.Threading;
 
 namespace Grupp6GUIProj {
     /// <summary>
@@ -140,6 +141,6 @@ namespace Grupp6GUIProj {
                 }
 
             }
-        }
+        }  
     }
 }
