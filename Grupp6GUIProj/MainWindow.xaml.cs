@@ -66,7 +66,26 @@ namespace Grupp6GUIProj {
                 string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
                 foreach (var item in files)
                 {
+                    pathList.Add(item);
                     lbFiles.Items.Add(System.IO.Path.GetFileName(item));
+                }
+                if (pathList.Count() == 1)
+                {
+                    if (System.IO.Path.GetExtension(pathList[0]) == ".molk")
+                    {
+                        MolkFileBtn.IsEnabled = false;
+                        UnMolkFileBtn.IsEnabled = true;
+                    }
+                    else
+                    {
+                        MolkFileBtn.IsEnabled = true;
+                        UnMolkFileBtn.IsEnabled = false;
+                    }
+                }
+                else if (pathList.Count() > 1)
+                {
+                    MolkFileBtn.IsEnabled = true;
+                    UnMolkFileBtn.IsEnabled = false;
                 }
                 lbFilesContainer.Visibility = Visibility.Visible;
                 DropFiles.Visibility = Visibility.Hidden;
@@ -87,27 +106,28 @@ namespace Grupp6GUIProj {
                     pathList.Add(filename);
                     lbFiles.Items.Add(System.IO.Path.GetFileName(filename));
                 }
-            }
-            if (pathList.Count() == 1)
-            {
-                if (System.IO.Path.GetExtension(pathList[0]) == ".molk")
+                if (pathList.Count() == 1)
                 {
-                    MolkFileBtn.IsEnabled = false;
-                    UnMolkFileBtn.IsEnabled = true;
+                    if (System.IO.Path.GetExtension(pathList[0]) == ".molk")
+                    {
+                        MolkFileBtn.IsEnabled = false;
+                        UnMolkFileBtn.IsEnabled = true;
+                    }
+                    else
+                    {
+                        MolkFileBtn.IsEnabled = true;
+                        UnMolkFileBtn.IsEnabled = false;
+                    }
                 }
-                else
+                else if (pathList.Count() > 1)
                 {
                     MolkFileBtn.IsEnabled = true;
                     UnMolkFileBtn.IsEnabled = false;
                 }
+                lbFilesContainer.Visibility = Visibility.Visible;
+                DropFiles.Visibility = Visibility.Hidden;
             }
-            else if (pathList.Count() > 1)
-            {
-                MolkFileBtn.IsEnabled = true;
-                UnMolkFileBtn.IsEnabled = false;
-            }
-            lbFilesContainer.Visibility = Visibility.Visible;
-            DropFiles.Visibility = Visibility.Hidden;
+            
         }
 
         private void btnOpenFiles_Click_Basic(object sender, RoutedEventArgs e)

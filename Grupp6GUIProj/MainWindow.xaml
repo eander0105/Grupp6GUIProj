@@ -188,7 +188,7 @@
                                 <Label HorizontalAlignment="Center"
                                            FontSize="24"
                                            Foreground="Black"
-                                           VerticalAlignment="Center">Drop file here..</Label>
+                                           VerticalAlignment="Center">Drop files here or</Label>
                                 <Button Name="btnOpenFileAdvanced"
                                             Click="btnOpenFiles_Click_Advanced"
                                             Foreground="Black"
@@ -196,9 +196,11 @@
                                             Height="34" Width="100"
                                             FontSize="18">Browse</Button>
                             </StackPanel>
-                            <Viewbox Name="lbFilesContainer" Visibility="Hidden">
-                                <ListBox Name="lbFiles" />
-                            </Viewbox>
+                            <Grid Name="lbFilesContainer" Visibility="Hidden">
+                                <ListBox 
+                                    Background="#FFCCB5D8"
+                                    Name="lbFiles" />
+                            </Grid>
                         </Grid>
                     </Grid>
                 </TabItem>
