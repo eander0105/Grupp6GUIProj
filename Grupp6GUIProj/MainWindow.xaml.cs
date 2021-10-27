@@ -185,8 +185,12 @@ namespace Grupp6GUIProj {
         {
             lbFiles.Items.Clear();
             pathList.Clear();
+
             MolkFileBtn.IsEnabled = false;
             UnMolkFileBtn.IsEnabled = false;
+            FileName.IsEnabled = false;
+            TextFileField.IsEnabled = false;
+
             lbFilesContainer.Visibility = Visibility.Hidden;
             DropFiles.Visibility = Visibility.Visible;
         }
@@ -302,6 +306,35 @@ namespace Grupp6GUIProj {
             cmd.WaitForExit();
             MessageBox.Show("File prossesing done", "Done", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.None, MessageBoxOptions.DefaultDesktopOnly);
 
+        }
+
+        private void lbFiles_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lbFiles.SelectedItem != null)
+            {
+                FileName.Text = lbFiles.SelectedItem.ToString();
+                if (System.IO.Path.GetExtension(lbFiles.SelectedItem.ToString()) == ".txt")
+                {
+                    var text = System.IO.File.ReadAllLines(pathList[lbFiles.SelectedIndex]);
+                    TextFileField.Text = "";
+                    foreach (var item in text)
+                    {
+                        TextFileField.Text += item + "\n";
+                    }
+                    FileName.IsEnabled = true;
+                    TextFileField.IsEnabled = true;
+                }
+                else
+                {
+                    TextFileField.Text = "";
+                    FileName.IsEnabled = true;
+                    TextFileField.IsEnabled = false;
+                }
+            }
+            else
+            {
+                FileName.Text = "";
+            }
         }
     }
 }
