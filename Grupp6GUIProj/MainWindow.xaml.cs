@@ -45,7 +45,7 @@ namespace Grupp6GUIProj {
 
         protected override void OnClosing(CancelEventArgs e)
         {
-            var res = MessageBox.Show("Do you wish to close application?", "Closing", MessageBoxButton.YesNo,MessageBoxImage.Exclamation);
+            var res = MessageBox.Show("Do you wish to close application?", "Closing", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
             if (res == MessageBoxResult.Yes)
                 base.OnClosing(e);
             else
@@ -219,30 +219,30 @@ namespace Grupp6GUIProj {
             folderDialog.IsFolderPicker = true;
             if (folderDialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                MessageBox.Show("You selected: " + folderDialog.FileName);
-            }
-            Process cmd = new Process();
+                Process cmd = new Process();
 
-            cmd.StartInfo.FileName = "cmd.exe";
-            cmd.StartInfo.RedirectStandardInput = true;
-            cmd.StartInfo.RedirectStandardOutput = true;
-            cmd.StartInfo.CreateNoWindow = true;
-            cmd.StartInfo.UseShellExecute = false;
-            cmd.Start();
-            cmd.StandardInput.WriteLine("cd..\\..\\..\\");
-            try
-            {
-                cmd.StandardInput.WriteLine(@"unmolk """ + pathList[0] + @""" -d """ + folderDialog.FileName + @"""");
-            }
-            catch
-            {
-                MessageBox.Show("could not unmolk the file please try again", "Could not unmolk", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.None, MessageBoxOptions.DefaultDesktopOnly);
-            }
-            cmd.StandardInput.Flush();
-            cmd.StandardInput.Close();
-            cmd.WaitForExit();
-            MessageBox.Show("File prossesing done", "Done", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.None, MessageBoxOptions.DefaultDesktopOnly);
+                cmd.StartInfo.FileName = "cmd.exe";
+                cmd.StartInfo.RedirectStandardInput = true;
+                cmd.StartInfo.RedirectStandardOutput = true;
+                cmd.StartInfo.CreateNoWindow = true;
+                cmd.StartInfo.UseShellExecute = false;
+                cmd.Start();
+                cmd.StandardInput.WriteLine("cd..\\..\\..\\");
+                try
+                {
+                    cmd.StandardInput.WriteLine(@"unmolk """ + pathList[0] + @""" -d """ + folderDialog.FileName + @"""");
+                    Process.Start("explorer.exe", folderDialog.FileName);
+                }
+                catch
+                {
+                    MessageBox.Show("Could not unmolk the file please try again", "Could not unmolk", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.None, MessageBoxOptions.DefaultDesktopOnly);
+                }
+                cmd.StandardInput.Flush();
+                cmd.StandardInput.Close();
+                cmd.WaitForExit();
 
+                ClearlbFiles();
+            }
         }
 
         private void MolkFileLocation(object sender, RoutedEventArgs e)
@@ -263,7 +263,7 @@ namespace Grupp6GUIProj {
             cmd.StartInfo.UseShellExecute = false;
             cmd.Start();
             cmd.StandardInput.WriteLine("cd..\\..\\..\\");
-          
+
             cmd.StandardInput.Flush();
             foreach (var item in pathList)
             {
@@ -273,7 +273,7 @@ namespace Grupp6GUIProj {
                 }
                 catch
                 {
-                    MessageBox.Show("could not molk  "+ item + "please try again", "Could not molk", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.None, MessageBoxOptions.DefaultDesktopOnly);
+                    MessageBox.Show("could not molk  " + item + "please try again", "Could not molk", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.None, MessageBoxOptions.DefaultDesktopOnly);
 
                 }
             }
