@@ -22,17 +22,13 @@
                     <MenuItem Header="_Exit"  Click="Exit_Click"/>
                 </MenuItem>
                 <MenuItem Header="Options">
-                    <MenuItem Header="_File">
-                        <MenuItem Command="Open" />
-                        <Separator />
-                        <MenuItem Header="_Exit"  Click="Exit_Click"/>
-                    </MenuItem>
                     <MenuItem Header="Compression">
                         <MenuItem Header="Fast">
                         </MenuItem>
                         <MenuItem Header="Better">
                         </MenuItem>
                     </MenuItem>
+                    <MenuItem Name="RecurseOption" Header="Recurse into folders" IsCheckable="True" IsChecked="True" />
                 </MenuItem>
             </Menu>
             <Image VerticalAlignment="Top" HorizontalAlignment="Right" Margin="10" Height="50" Width="113">

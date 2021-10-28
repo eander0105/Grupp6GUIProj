@@ -139,7 +139,7 @@ namespace Grupp6GUIProj {
                 lbFilesContainer.Visibility = Visibility.Visible;
                 DropFiles.Visibility = Visibility.Hidden;
             }
-            
+
         }
 
         private void btnOpenFiles_Click_Basic(object sender, RoutedEventArgs e)
@@ -311,7 +311,13 @@ namespace Grupp6GUIProj {
                 {
                     try
                     {
-                        cmd.StandardInput.WriteLine(@"molk -r -j """ + folderDialog.FileName + "\\" + System.IO.Path.GetFileNameWithoutExtension(pathList[0]) + @".molk"" """ + item + @"""");
+                        string command = "molk ";
+                        if (RecurseOption.IsChecked)
+                        {
+                            command += "-r ";
+                        }
+                        command += @"-j """ + folderDialog.FileName + "\\" + System.IO.Path.GetFileNameWithoutExtension(pathList[0]) + @".molk"" """ + item + @"""";
+                        cmd.StandardInput.WriteLine(command);
                     }
                     catch
                     {
@@ -322,7 +328,6 @@ namespace Grupp6GUIProj {
                 cmd.StandardInput.Flush();
                 cmd.StandardInput.Close();
                 cmd.WaitForExit();
-               
 
             }
 
