@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:local="clr-namespace:Grupp6GUIProj"
         mc:Ignorable="d"
         Title="Molk" Height="450" Width="800" FontFamily="sans-serif">
@@ -13,8 +14,8 @@
             <Menu DockPanel.Dock="Top"
               FontFamily="sans-serif"
               FontSize="14"
-              Foreground="Black"
-              Background="#FFB2B0BB">
+              Foreground="White"
+              Background="#FF2E2732">
                 <MenuItem Header="_File">
                     <MenuItem Command="Open" />
                     <Separator />
@@ -45,8 +46,8 @@
                 <TabItem Header="Basic"
                          FontFamily="Arial"
                          FontSize="14"
-                         Foreground="Black"
-                         Background="#FF987FA6">
+                         Foreground="White"
+                         Background="#FF2E2732">
                     <Grid 
                         AllowDrop="True"
                         Drop="StackPanel_Drop_Basic"
@@ -66,13 +67,26 @@
                                     Foreground="Black"
                                     FontSize="18">Browse</Button>
                         </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom">
+                            <Grid>
+                                <controls:MetroProgressBar Height="40"
+                                       x:Name="ProgressBasic"                
+                                       Background="#FFCCB5D8"
+                                       BorderBrush="Black"
+                                       BorderThickness="3"
+                                       Foreground="#783c88"
+                                       Visibility="Collapsed"
+                                       IsIndeterminate="True"
+                                       Value="{Binding CurrentProgressInfo.ProgressPercent}" />
+                            </Grid>
+                        </StackPanel>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Advanced"
-                         Foreground="Black"
+                         Foreground="White"
                          FontFamily="sans-serif"
                          FontSize="14"
-                         Background="#FF987FA6">
+                         Background="#FF2E2732">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="13*" />
@@ -199,12 +213,25 @@
                                             VerticalAlignment="Center"
                                             Height="34" Width="100"
                                             FontSize="18">Browse</Button>
+
                             </StackPanel>
                             <Grid Name="lbFilesContainer" Visibility="Hidden">
                                 <ListBox 
                                     Background="#FFCCB5D8"
                                     Name="lbFiles"
                                     SelectionChanged="lbFiles_SelectionChanged"/>
+                                <StackPanel Margin="0,220,0,0">
+                                    <controls:MetroProgressBar                                                                        
+                                       x:Name="ProgressAdvanced"                
+                                       Background="#FFCCB5D8"
+                                       HorizontalAlignment="Center"
+                                       BorderBrush="Black"
+                                       BorderThickness="3"
+                                       Foreground="#783c88"
+                                       Visibility="Hidden"
+                                       IsIndeterminate="True"
+                                       Value="{Binding CurrentProgressInfo.ProgressPercent}" Width="332" />
+                                </StackPanel>
                             </Grid>
                         </Grid>
                     </Grid>
