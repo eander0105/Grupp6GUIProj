@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using System.IO;
 using System.ComponentModel;
 using Microsoft.WindowsAPICodePack.Dialogs;
+using System.Windows.Threading;
 
 namespace Grupp6GUIProj {
     /// <summary>
@@ -25,12 +26,23 @@ namespace Grupp6GUIProj {
     public partial class MainWindow : Window {
 
         public List<string> pathList = new List<string>();
+        private DispatcherTimer _timer;
 
         public MainWindow()
         {
             InitializeComponent();
+            _timer = new DispatcherTimer();
+            _timer.Tick += timer_Tick;
+            _timer.Interval = new System.TimeSpan(0, 0, 7);
         }
-
+        private void timer_Tick(object sender, System.EventArgs e)
+        {
+            Debug.WriteLine("no");
+            ProgressBasic.Visibility = Visibility.Hidden;
+            ProgressAdvanced.Visibility = Visibility.Hidden;
+            _timer.Stop();
+            MessageBox.Show("File prossesing done", "Done", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.None, MessageBoxOptions.DefaultDesktopOnly);
+        }
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("Do you wish to close applicaton?", "Closing", MessageBoxButton.YesNo) == MessageBoxResult.No)
@@ -198,6 +210,8 @@ namespace Grupp6GUIProj {
 
         private void StackPanel_Drop_Basic(object sender, DragEventArgs e)
         {
+            ProgressBasic.Visibility = Visibility.Visible;
+            _timer.Start();
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
@@ -231,7 +245,7 @@ namespace Grupp6GUIProj {
                     cmd.StandardInput.Flush();
                     cmd.StandardInput.Close();
                     cmd.WaitForExit();
-                    MessageBox.Show("File prossesing done", "Done", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.None, MessageBoxOptions.DefaultDesktopOnly);
+                    //MessageBox.Show("File prossesing done", "Done", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.None, MessageBoxOptions.DefaultDesktopOnly);
                 }
 
             }
@@ -271,7 +285,7 @@ namespace Grupp6GUIProj {
         }
 
         private void MolkFileLocation(object sender, RoutedEventArgs e)
-        {
+        {         
             CommonOpenFileDialog folderDialog = new CommonOpenFileDialog();
             folderDialog.InitialDirectory = "C:\\Users";
             folderDialog.IsFolderPicker = true;
@@ -288,6 +302,9 @@ namespace Grupp6GUIProj {
                 cmd.StartInfo.UseShellExecute = false;
                 cmd.Start();
                 cmd.StandardInput.WriteLine("cd..\\..\\..\\");
+
+                ProgressAdvanced.Visibility = Visibility.Visible;
+                _timer.Start();
 
                 cmd.StandardInput.Flush();
                 foreach (var item in pathList)
@@ -342,7 +359,7 @@ namespace Grupp6GUIProj {
             else
             {
                 FileName.Text = "";
-            }
+            }           
         }
     }
 }
